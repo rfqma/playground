@@ -115,7 +115,12 @@ export default function Page() {
       >
         Setelah jendela Snap Payment terbuka dengan menekan tombol{" "}
         <b>Sewa Sekarang</b>, simulasikan pembayaran dengan
-        <Text c="blue" fs="italic" component="a" href="https://midtrans.com/id">
+        <Text
+          c="blue"
+          fs="italic"
+          component="a"
+          href="https://simulator.sandbox.midtrans.com/"
+        >
           {" "}
           https://simulator.sandbox.midtrans.com/
         </Text>
