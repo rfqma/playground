@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import { ColorSchemeScript, MantineProvider, Loader } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import HeaderMegaMenu from "@/components/HeaderMegaMenu";
+import { Suspense } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +31,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <MantineProvider defaultColorScheme="dark">
+          <Suspense
+            fallback={
+              <div className="grid place-items-center min-h-screen">
+                <Loader color="violet" type="dots" />
+              </div>
+            }
+          >
+            <Notifications />
+            <HeaderMegaMenu />
+            {children}
+          </Suspense>
+        </MantineProvider>
       </body>
     </html>
   );
