@@ -65,14 +65,17 @@ export default function Page() {
       quantity: product.quantity,
     };
 
-    const results = await fetch("/api/tokenizer", {
-      method: "POST",
-      body: JSON.stringify(productData),
-    });
+    const results = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/playground/midtrans`,
+      {
+        method: "POST",
+        body: JSON.stringify(productData),
+      }
+    );
 
     const data = await results.json();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).snap.pay(data.token);
+    (window as any).snap.pay(data.data.token);
   };
 
   return (
